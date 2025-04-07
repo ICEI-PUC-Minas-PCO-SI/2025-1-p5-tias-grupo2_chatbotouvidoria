@@ -1,25 +1,26 @@
-# Nome do projeto
+# Smart Ouvidoria
 
 `CURSO: Sistemas de Informação`
 
 `DISCIPLINA: Trabalho Interdisciplinar Aplicações para Sustentabilidade`
 
-`Xº semestre/ANO`
+`1º semestre/2025`
 
-Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
+Nosso projeto consiste em um chatbot para a ouvidoria de contagem, o chatbot será responsável pelo atendimento inicial dos munícipes, caso necessário direcionando munícipes a entrar em contato com o órgão correto ou então prosseguindo para um atendimento.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
-* Nome completo do aluno 5
-* Nome completo do aluno 6
+* Yago de Arruda Simões, 
+* Matheus Filipe Duarte Rodrigues, 
+* Daniel Vitor Salviano Araújo, 
+* Gustavo Augusto Santos Perdigão, 
+* Michael Pires Passos, 
+* Vinicius Augusto Gomes de Oliveira
 
 ## Professor
 
-* Nome completo do(a) professor(a)
+* Maria Ines Lage de Paula
+* Paulo Henrique Rodrigues
 
 ## Instruções de utilização
 
