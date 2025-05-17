@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "node-schedule": "^2.1.1",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.26.0"
+  },
+  "name": "SmartOuvidoria",
+  "version": "2.0.0",
+  "bin": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "pkg": {
+    "scripts": "index.js",
+    "assets": [
+      "puppeteer/**/*",
+      ".wwebjs_auth/**/*",
+      ".wwebjs_cache/**/*"
+    ]
+  }
+}

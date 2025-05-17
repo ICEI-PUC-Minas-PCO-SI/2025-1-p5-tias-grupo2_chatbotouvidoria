@@ -1,0 +1,12 @@
+# Ignorar dependências instaladas
+node_modules/
+#
+.wwebjs_auth/
+.wwebjs_cache/
+#
+config.json
+#
+/src/back/Pasta_Do_Executavel/.wwebjs_auth/
+/src/back/Pasta_Do_Executavel/.wwebjs_cache/
+/src/back/Pasta_Do_Executavel/puppeteer-core/
+/src/back/Pasta_Do_Executavel/
