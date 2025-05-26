@@ -10,3 +10,7 @@ config.json
 /src/back/Pasta_Do_Executavel/.wwebjs_cache/
 /src/back/Pasta_Do_Executavel/puppeteer-core/
 /src/back/Pasta_Do_Executavel/
+#
+# Pasta onde estou gerando o executavel
+/Pasta_Do_Executavel
+/puppeteer-core
