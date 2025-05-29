@@ -31,3 +31,4 @@ node index.js (modo para testes)
 ```
 pkg . --targets node18-win-x64 --output Pasta_Do_Executavel/SmartOuvidoria.exe
 ```
+*A pasta do puppeteer-core deve ser copiada para a pasta do projeto e para a pasta que o executável estiver (essa pasta é gerada dentro do node_modules depois de usar o npm install).
