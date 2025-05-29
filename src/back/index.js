@@ -235,30 +235,6 @@ client.on('message', async msg => {
 
 client.initialize();
 
-//esse espaço abaixo permite resetar o step de um municipe sem resetar o bot todo
-const readline = require('readline');
-
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
-rl.on('line', (input) => {
-    const [command, numero] = input.trim().split(' ');
-
-    if (command === 'reset' && numero) {
-        if (municipes[numero]) {
-            municipes[numero].step = 0;
-            console.log(`O step do munícipe ${numero} foi resetado para 0.`);
-        } else {
-            console.log(`Nenhum munícipe encontrado com esse Numero.`);
-        }
-    } else {
-        console.log('Comando inválido. Use: reset <Numero>');
-    }
-});
-
-
 async function validarTAG(msg) {
     const valor = msg.body.trim();
 
