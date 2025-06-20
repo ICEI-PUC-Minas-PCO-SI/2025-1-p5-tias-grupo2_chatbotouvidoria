@@ -1,23 +1,33 @@
 # Código do projeto
 
-> Aqui devem ficar os arquivos-fonte do projeto: HTML, CSS, JavaScript, imagens e outros necessários para o funcionamento do sistema.
+> Os arquivos-fonte essenciais para o funcionamento do SmartOuvidoria estão organizados nos diretórios a seguir:
 
-[Código do front-end](../src/front) -- repositório do código do front-end
-
-[Código do back-end](../src/back)  -- repositório do código do back-end
-
-[Scripts SQL](../src/db)  -- repositório dos scripts SQL
-
-> **Links úteis**:
-> - [Instruções sobre acesso a APIs externas](https://github.com/ICEI-PUC-Minas-PMV-SI/WebApplicationProject-Template/blob/main/help/apis.md)
+> Código do back-end — repositório responsável pela lógica de negócios e integração com o WhatsApp Business API. (src/back)
 
 
 ## Instalação do Site
 
-É necessário implantá-lo em um servidor web de sua preferência. Existem diversos servidores web gratuitos que podem ser utilizados, tal como GitHub Pages (GitHub.IO), Vercel, Render, Netlify, Surge.sh, entre outros. [Insira o endereço eletrônico público para acessá-lo.] 
+Para utilizar o sistema SmartOuvidoria em ambiente de produção, será necessário realizar a abertura do executável pelo drive que foi disponibilizado. As etapas básicas são:
+
+- Abrir o drive
+- Rodar o executável
+- Ler o QR CODE
+- Conferir se está recebendo as mensagens e rodando de maneira correta
 
 ## Histórico de versões
 
-### [0.1.0] - DD/MM/AAAA
-#### Adicionado/Atualizado/Removido
-- Relação de artefatos ... 
+## [1.0.0] - 02/06/2025 ###
+## Adicionado ###
+Documentação inicial do projeto SmartOuvidoria
+
+Estrutura do chatbot e fluxos de atendimento via WhatsApp
+
+Integração com WhatsApp Business API
+
+Projeto de interface com base em protótipos reais
+
+Plano de testes com casos baseados nos requisitos funcionais
+
+Projeto Model Canvas e cronograma detalhado
+
+Diagrama de atividades e caso de uso
