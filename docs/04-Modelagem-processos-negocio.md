@@ -2,42 +2,127 @@
 
 <span style="color:red">Pré-requisitos: <a href="02-Especificacao.md"> Especificação do projeto</a></span>
 
-> **Links úteis**:
-> - [Modelagem de processos AS-IS x TO-BE](https://dheka.com.br/modelagem-as-is-to-be/)
-> - [20 dicas práticas de modelagem de processos](https://dheka.com.br/20-dicas-praticas-de-modelagem-de-processos/)
-
 ## Modelagem da situação atual (Modelagem AS IS)
 
-Apresente uma descrição textual de como os sistemas atuais resolvem o problema que seu projeto se propõe a resolver. Caso sua proposta seja inovadora e não existam processos claramente definidos, apresente como as tarefas que seu sistema pretende implementar são executadas atualmente, mesmo que não se utilize tecnologia computacional.
+Atualmente, o atendimento da Ouvidoria Geral do Município de Contagem é realizado de forma manual e descentralizada. Os munícipes entram em contato por WhatsApp, telefone ou e-mail, sendo que cada atendente precisa registrar manualmente as informações recebidas em planilhas internas.
 
-Com o tema do projeto definido, escolham alguns processos no contexto de negócios. Para ilustrar os potenciais ganhos com a automatização, imaginem processos manuais, ineficientes e/ou com muitas idas e vindas, gerando, assim, retrabalho. Colem aqui os modelos dos processos atuais (modelo AS-IS), elaborados com o apoio da ferramenta baseada em BPMN utilizada na disciplina.
+Esse processo apresenta diversos gargalos:
+
+- Ausência de padronização no registro de dados.
+
+- Alto risco de perda de informações em caso de falhas técnicas (como queda de internet).
+
+- Tempo elevado de resposta, pois as mensagens precisam ser lidas, analisadas e respondidas manualmente.
+
+- Dificuldade no rastreamento do histórico de manifestações.
+
+- Ações repetitivas e sobrecarga dos atendentes com demandas simples.
+
+O processo atual não conta com automatizações e depende exclusivamente da disponibilidade dos funcionários para atender as solicitações, ocasionando atrasos em períodos de alta demanda.
 
 ## Descrição geral da proposta (Modelagem TO BE)
 
-Tendo identificado os gargalos dos modelos AS-IS, apresentem uma descrição da proposta de solução, buscando maior eficiência com a introdução da tecnologia. Abordem também os limites dessa solução e seu alinhamento com as estratégias e objetivos do contexto de negócio escolhido.
+A proposta do projeto SmartOuvidoria é automatizar o atendimento inicial da Ouvidoria por meio de um chatbot integrado ao WhatsApp Business, que será responsável por:
 
-Cole aqui os modelos da solução proposta (modelo TO-BE), elaborados com o apoio da ferramenta baseada em BPMN utilizada na disciplina. Cada processo identificado deve ter seu modelo TO-BE específico. Descrevam as oportunidades de melhoria de cada processo da solução proposta.
+- Identificar o tipo de manifestação do cidadão (reclamação, elogio, denúncia etc.).
 
-Apresente aqui uma descrição da sua proposta, abordando seus limites e suas ligações com as estratégias e objetivos do negócio. Apresente também as oportunidades de melhoria.
+- Coletar informações iniciais e verificar se há protocolo anterior.
+
+- Encaminhar a solicitação para o setor competente ou para um atendente humano, caso necessário.
+
+- Responder dúvidas frequentes automaticamente.
+
+- Registrar e organizar os dados no banco de dados.
+
+Limites da solução:
+- O chatbot não substitui o atendimento humano para casos complexos.
+
+- A integração com sistemas externos depende das permissões da Ouvidoria e pode ser gradual.
+
+- O uso depende da disponibilidade de internet e de dispositivos compatíveis.
+
+Alinhamento estratégico:
+- Reduzir o tempo de resposta aos cidadãos.
+
+- Melhorar a organização e rastreabilidade das manifestações.
+
+- Alinhar o serviço da Ouvidoria com os princípios de eficiência, transparência e inclusão digital.
 
 ## Modelagem dos processos
 
-[PROCESSO 1 - Nome do processo](./processes/processo-1-nome-do-processo.md "Detalhamento do processo 1.")
+# Processo 1 – Registro de manifestação via WhatsApp
 
-[PROCESSO 2 - Nome do processo](./processes/processo-2-nome-do-processo.md "Detalhamento do processo 2.")
+## Objetivo
+Permitir que o cidadão registre sua manifestação (reclamação, denúncia, elogio ou sugestão) diretamente pelo WhatsApp de forma automatizada, com coleta de dados organizada e resposta imediata.
+
+## Participantes
+- Cidadão (Munícipe)
+- Chatbot (SmartOuvidoria)
+- Banco de Dados
+
+## Etapas do Processo (TO-BE)
+1. O cidadão inicia a conversa com o número da Ouvidoria via WhatsApp.
+2. O chatbot exibe uma mensagem de saudação e apresenta as opções de manifestação.
+3. O cidadão seleciona a opção desejada (reclamação, denúncia, etc.).
+4. O chatbot pergunta se já houve contato com a secretaria responsável.
+5. Se sim, solicita o número de protocolo e data de abertura.
+6. Verifica se o prazo do protocolo expirou.
+7. Coleta os dados do cidadão (nome, e-mail, endereço).
+8. Solicita a descrição detalhada da manifestação.
+9. Registra todos os dados no banco.
+10. Encerra com confirmação e número de atendimento (gerado automaticamente).
+
+
+## Pontos fortes do processo:
+- Totalmente automatizado.
+- Redução de tempo de resposta.
+- Estruturação e padronização das informações.
+- Registro seguro e rastreável.
+
+## Observações
+- A coleta de dados sensíveis está em conformidade com a LGPD.
+- A funcionalidade está limitada a usuários com acesso ao WhatsApp.
+
+
+# Processo 2 – Encaminhamento para atendimento humano
+
+## Objetivo
+Garantir que manifestações mais complexas ou que não possam ser solucionadas automaticamente pelo chatbot sejam redirecionadas a um atendente humano da Ouvidoria.
+
+## Participantes
+- Chatbot (SmartOuvidoria)
+- Atendente da Ouvidoria
+- Cidadão (Munícipe)
+
+## Etapas do Processo (TO-BE)
+1. O chatbot recebe a manifestação do cidadão.
+2. Verifica se a solicitação pode ser respondida automaticamente.
+3. Caso não seja possível, identifica a necessidade de suporte humano.
+4. Encaminha os dados recebidos para a interface interna do atendente.
+5. Um atendente assume o atendimento e entra em contato via WhatsApp ou telefone.
+6. Finaliza o atendimento e registra a conclusão no sistema.
+
+## Benefícios do processo:
+- Filtragem eficiente das manifestações.
+- Redução da sobrecarga dos atendentes.
+- Atendimento humano apenas quando necessário.
+
+## Observações
+- O tempo de resposta humano pode variar.
+- Há registro da troca de responsável (chatbot → atendente).
+
 
 
 ## Indicadores de desempenho
 
-Apresente aqui os principais indicadores de desempenho e algumas metas para o processo. Atenção: as informações necessárias para gerar os indicadores devem estar contempladas no diagrama de classe. Coloque no mínimo 5 indicadores.
-
-Use o seguinte modelo:
-
-| **Indicador** | **Objetivos** | **Descrição** | **Fonte de dados** | **Fórmula de cálculo** |
-| ---           | ---           | ---           | ---             | ---             |
-| Percentual de reclamações | Avaliar quantitativamente as reclamações | Percentual de reclamações em relação ao total de atendimentos | Tabela Reclamações | número total de reclamações / número total de atendimentos |
-| Taxa de requisições atendidas | Melhorar a prestação de serviços medindo a porcentagem de requisições atendidas| Mede a % de requisições atendidas na semana | Tabela Solicitações | (número de requisições atendidas / número total de requisições) * 100 |
-| Taxa de entrega de material | Manter controle sobre os materiais que estão sendo entregues | Mede % de material entregue dentro do mês | Tabela Pedidos | (número de pedidos entregues / número total de pedidos) * 100 |
+| **Indicador**                   | **Objetivos**                                                | **Descrição**                                                    | **Fonte de dados**     | **Fórmula de cálculo**                                          |
+| ------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------- | ---------------------- | --------------------------------------------------------------- |
+| Tempo médio de atendimento      | Reduzir o tempo de resposta ao cidadão                       | Média de tempo entre a primeira mensagem e a resposta do chatbot | Tabela de Atendimentos | soma do tempo de resposta / total de atendimentos               |
+| Taxa de automatização           | Avaliar eficiência do chatbot                                | Percentual de demandas resolvidas sem intervenção humana         | Tabela de Atendimentos | (demandas automatizadas / total de demandas) \* 100             |
+| Índice de satisfação do cidadão | Medir a qualidade percebida no atendimento                   | Nota de avaliação ao final do atendimento                        | Tabela de Feedbacks    | média das notas recebidas                                       |
+| Reclamações por secretaria      | Identificar setores com maior número de problemas reportados | Total de reclamações por secretaria registrada no sistema        | Tabela de Reclamações  | número de reclamações / secretaria                              |
+| Cumprimento de prazos           | Avaliar a eficiência na solução das manifestações            | Percentual de manifestações resolvidas dentro do prazo informado | Tabela de Protocolos   | (resolvidas no prazo / total de manifestações com prazo) \* 100 |
 
 
-Obs.: todas as informações necessárias para gerar os indicadores devem estar no diagrama de classe a ser apresentado posteriormente.
+
+Obs.: Todas as informações acima estão previstas no diagrama de classes e na modelagem do banco de dados descritos no projeto técnico.
