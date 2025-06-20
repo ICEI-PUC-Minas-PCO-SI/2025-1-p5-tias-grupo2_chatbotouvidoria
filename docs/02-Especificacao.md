@@ -1,101 +1,59 @@
 # Especificação do projeto
-
 <span style="color:red">Pré-requisitos: <a href="01-Contexto.md"> Documentação de contexto</a></span>
 
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
+Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
 
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto.
+Apresenta-se aqui uma visão geral dos elementos que compõem a especificação do projeto SmartOuvidoria, desenvolvida para atender à demanda da Ouvidoria Geral do Município de Contagem. A análise foi feita com base em entrevistas com stakeholders, levantamento de requisitos e modelagem de casos de uso e fluxos. Foram utilizadas técnicas como análise de domínio, matriz de responsabilidades e Project Model Canvas.
 
-## Personas
+# Personas
+Maria Aparecida, 64 anos – Aposentada e moradora de Contagem
+Maria Aparecida é uma senhora aposentada que mora sozinha em um bairro residencial de Contagem. Ela costuma entrar em contato com a prefeitura sempre que há problemas no asfalto, buracos ou lixo acumulado perto de sua rua. Apesar de não ter muita familiaridade com tecnologia, ela utiliza o WhatsApp com ajuda dos netos. Maria gostaria de registrar suas reclamações de maneira mais simples, sem precisar ligar ou se deslocar até um posto de atendimento.
 
-Exemplo: _Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente por meio de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros._
+João Henrique, 32 anos – Servidor Público Atendente da Ouvidoria
+João trabalha há 4 anos na Ouvidoria Geral do Município de Contagem. Ele é responsável por atender ligações e e-mails dos cidadãos e registrar as manifestações no sistema interno. Ultimamente, tem se sentido sobrecarregado com a quantidade de demandas, e acredita que um sistema de chatbot ajudaria a otimizar o tempo, evitando que ele precise repetir respostas a perguntas frequentes como “qual o prazo do protocolo” ou “qual secretaria devo procurar?”.
 
-Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
-
-> **Links úteis**:
-> - [Rock content](https://rockcontent.com/blog/personas/)
-> - [Hotmart](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Persona x público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [Mapa de empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
-> - [Mapa de stalkeholders](https://www.racecomunicacao.com.br/blog/como-fazer-o-mapeamento-de-stakeholders/)
->
-Lembre-se que você deve ser enumerar e descrever precisamente e personalizada todos os clientes ideais que sua solução almeja.
-
-## Histórias de usuários
-
+# Histórias de usuários
 Com base na análise das personas, foram identificadas as seguintes histórias de usuários:
 
-|EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
-|--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões                 | Permitir que possam administrar contas |
+| EU COMO... `PERSONA`   | QUERO/PRECISO ... `FUNCIONALIDADE`             | PARA ... `MOTIVO/VALOR`                                     |
+| ---------------------- | ---------------------------------------------- | ----------------------------------------------------------- |
+| Maria (Cidadã)         | Registrar uma manifestação via WhatsApp        | Para que minha demanda seja atendida rapidamente            |
+| Maria (Cidadã)         | Receber informações automáticas sobre serviços | Para evitar ir até a prefeitura apenas para tirar dúvidas   |
+| João (Atendente)       | Receber demandas classificadas pelo sistema    | Para focar apenas nos casos que realmente precisam de mim   |
+| Patrícia (Funcionária) | Monitorar atendimentos feitos pelo chatbot     | Para garantir que tudo esteja sendo respondido corretamente |
 
-Apresente aqui as histórias de usuários que são relevantes para o projeto da sua solução. As histórias de usuários consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuários por contexto, para facilitar consultas recorrentes a esta parte do documento.
+# Requisitos funcionais e não funcionais
 
-> **Links úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (user stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 common user story mistakes](https://airfocus.com/blog/user-story-mistakes/)
+As tabelas a seguir apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto. A priorização foi realizada com base em criticidade para o funcionamento mínimo da solução.
 
-## Requisitos
+| ID     | Descrição do Requisito                                          | Prioridade |
+| ------ | --------------------------------------------------------------- | ---------- |
+| RF-001 | Perguntar sobre a TAG do atendimento (ex: IPTU, capina, buraco) | Essencial  |
+| RF-002 | Perguntar se houve contato com a secretaria                     | Importante |
+| RF-003 | Solicitar número de protocolo                                   | Importante |
+| RF-004 | Perguntar a data de abertura do protocolo                       | Importante |
+| RF-005 | Perguntar a data de vencimento do protocolo                     | Importante |
+| RF-006 | Solicitar nome, e-mail e endereço                               | Desejável  |
+| RF-007 | Permitir descrição detalhada da manifestação                    | Desejável  |
+| RF-008 | Encaminhar caso para um atendente humano                        | Essencial  |
+| RF-009 | Informar contato da secretaria responsável                      | Essencial  |
 
-As tabelas a seguir apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto. Para determinar a prioridade dos requisitos, aplique uma técnica de priorização e detalhe como essa técnica foi aplicada.
+| ID      | Descrição do Requisito                                                 | Prioridade |
+| ------- | ---------------------------------------------------------------------- | ---------- |
+| RNF-001 | Tempo de resposta do chatbot inferior a 5 segundos                     | Essencial  |
+| RNF-002 | Proteção dos dados pessoais conforme a LGPD                            | Essencial  |
+| RNF-003 | Suportar no mínimo 4 usuários simultâneos sem degradação de desempenho | Essencial  |
+| RNF-004 | Sistema de fácil acesso e usabilidade para todos os públicos           | Essencial  |
+| RNF-005 | Integração com a API oficial do WhatsApp Business                      | Essencial  |
 
-### Requisitos funcionais
+# Restrições
 
-|ID    | Descrição do Requisito  | Prioridade |
-|------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+| ID  | Restrição                                                                                 |
+| --- | ----------------------------------------------------------------------------------------- |
+| 001 | O projeto deverá ser finalizado e entregue até o final do semestre letivo de 2025         |
+| 002 | A solução deve ser compatível com a infraestrutura tecnológica atual da Ouvidoria         |
+| 003 | A implantação não pode depender de aquisição de servidores ou sistemas pagos de terceiros |
 
-### Requisitos não funcionais
+# Diagrama de casos de uso
 
-|ID     | Descrição do Requisito  |Prioridade |
-|-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em dispositivos móveis | MÉDIA | 
-|RNF-002| Deve processar as requisições do usuário em no máximo 3 segundos |  BAIXA | 
-
-Com base nas histórias de usuários, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos não funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-
-Lembre-se de que cada requisito deve corresponder a uma e somente uma característica-alvo da sua solução. Além disso, certifique-se de que todos os aspectos capturados nas histórias de usuários foram cobertos.
-
-> **Links úteis**:
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [Entenda o que são requisitos de software, a diferença entre requisito funcional e não funcional, e como identificar e documentar cada um deles](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
-
-## Restrições
-
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-O projeto está restrito aos itens apresentados na tabela a seguir.
-
-|ID| Restrição                                             |
-|--|-------------------------------------------------------|
-|001| O projeto deverá ser entregue até o final do semestre |
-|002| O custo total do projeto não deve exceder o orçamento definido       |
-
-## Diagrama de casos de uso
-
-O diagrama de casos de uso é o próximo passo após a elicitação de requisitos. Ele utiliza um modelo gráfico e uma tabela com as descrições sucintas dos casos de uso e dos atores. O diagrama contempla a fronteira do sistema e o detalhamento dos requisitos funcionais, com a indicação dos atores, casos de uso e seus relacionamentos.
-
-As referências abaixo irão auxiliá-lo na geração do artefato “diagrama de casos de uso”.
-
-> **Links úteis**:
-> - [Criando casos de uso](https://www.ibm.com/docs/pt-br/engineering-lifecycle-management-suite/design-rhapsody/10.0?topic=cases-creating-use)
-> - [Como criar diagrama de caso de uso: tutorial passo a passo](https://gitmind.com/pt/fazer-diagrama-de-caso-uso.html/)
-> - [Lucidchart](https://www.lucidchart.com/)
-> - [Astah](https://astah.net/)
-> - [Diagrams](https://app.diagrams.net/)
+(Ainda falta botar o diagrama)
