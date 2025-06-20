@@ -39,7 +39,7 @@ A seguir, estão descritos os principais casos de teste planejados com base nos 
 | **Objetivo do teste**   | Verificar se o sistema encaminha corretamente o munícipe para um atendente quando necessário.                        |
 | **Passos**              | - Iniciar atendimento com o chatbot<br>- Indicar um problema que exija suporte humano<br>- Aguardar redirecionamento |
 | **Critério de êxito**   | - O chatbot transfere a conversa para um atendente ou fornece as instruções adequadas para contato humano.           |
-| **Responsável**         | Nome do integrante da equipe                                                                                         |
+| **Responsável**         | Gustavo Augusto                                                                                     |
 
 <br>
 
@@ -51,7 +51,7 @@ A seguir, estão descritos os principais casos de teste planejados com base nos 
 | **Objetivo do teste**   | Verificar se o sistema fornece corretamente o contato da secretaria quando necessário.                                           |
 | **Passos**              | - Realizar atendimento com o chatbot<br>- Indicar que o cidadão ainda não contatou a secretaria<br>- Aguardar o envio do contato |
 | **Critério de êxito**   | - O sistema envia corretamente as informações de contato da secretaria competente.                                               |
-| **Responsável**         | Nome do integrante da equipe                                                                                                     |
+| **Responsável**         | Yago de Arruda                                                                                                   |
 
 
 # Ferramentas de Testes Utilizadas
