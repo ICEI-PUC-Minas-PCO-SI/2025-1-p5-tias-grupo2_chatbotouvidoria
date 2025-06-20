@@ -1,18 +1,16 @@
 # Plano de testes de software
 
-<span style="color:red">Pré-requisitos: <a href="02-Especificacao.md"> Especificação do projeto</a></span>, <a href="05-Projeto-interface.md"> Projeto de interface</a>
+<span style="color:red">Pré-requisitos: <a href="02-Especificacao.md">Especificação do projeto</a></span>, <a href="05-Projeto-interface.md">Projeto de interface</a>
 
-O plano de testes de software é gerado a partir da especificação do sistema e consiste em casos de teste que deverão ser executados quando a implementação estiver parcial ou totalmente pronta. Apresente os cenários de teste utilizados na realização dos testes da sua aplicação. Escolha cenários de teste que demonstrem os requisitos sendo satisfeitos.
+Este plano tem como objetivo validar os requisitos definidos para a aplicação SmartOuvidoria, garantindo que o chatbot para atendimento à Ouvidoria Geral de Contagem funcione conforme esperado em diferentes situações de uso.
 
-Enumere quais cenários de testes foram selecionados para teste. Neste tópico, o grupo deve detalhar quais funcionalidades foram avaliadas, o grupo de usuários que foi escolhido para participar do teste e as ferramentas utilizadas.
-
-Não deixe de enumerar os casos de teste de forma sequencial e garantir que o(s) requisito(s) associado(s) a cada um deles esteja(m) correto(s) — de acordo com o que foi definido na <a href="02-Especificacao.md">Especificação do projeto</a>.
+A seguir, estão descritos os principais casos de teste planejados com base nos requisitos funcionais e não funcionais do projeto.
 
 Por exemplo:
 
-| **Caso de teste**  | **CT-001 – Cadastrar perfil**  |
+| **Caso de teste**  | **CT-001 – Saudação ao munícipe**  |
 |:---: |:---: |
-| Requisito associado | RF-00X - A aplicação deve apresentar, na página principal, a funcionalidade de cadastro de usuários para que estes consigam criar e gerenciar seu perfil. |
+| Requisito associado | RD-001 - A aplicação deve apresentar, na página principal, a funcionalidade de cadastro de usuários para que estes consigam criar e gerenciar seu perfil. |
 | Objetivo do teste | Verificar se o usuário consegue se cadastrar na aplicação. |
 | Passos | - Acessar o navegador <br> - Informar o endereço do site https://adota-pet.herokuapp.com/src/index.html <br> - Clicar em "Criar conta" <br> - Preencher os campos obrigatórios (e-mail, nome, sobrenome, celular, CPF, senha, confirmação de senha) <br> - Aceitar os termos de uso <br> - Clicar em "Registrar" |
 | Critério de êxito | - O cadastro foi realizado com sucesso. |
@@ -31,12 +29,11 @@ Por exemplo:
 
 ## Ferramentas de testes (opcional)
 
-Comente sobre as ferramentas de testes utilizadas.
- 
-> **Links úteis**:
-> - [IBM - criação e geração de planos de teste](https://www.ibm.com/developerworks/br/local/rational/criacao_geracao_planos_testes_software/index.html)
-> - [Práticas e técnicas de testes ágeis](http://assiste.serpro.gov.br/serproagil/Apresenta/slides.pdf)
-> - [Teste de software: conceitos e tipos de testes](https://blog.onedaytesting.com.br/teste-de-software/)
-> - [Criação e geração de planos de teste de software](https://www.ibm.com/developerworks/br/local/rational/criacao_geracao_planos_testes_software/index.html)
-> - [Ferramentas de teste para JavaScript](https://geekflare.com/javascript-unit-testing/)
-> - [UX Tools](https://uxdesign.cc/ux-user-research-and-user-testing-tools-2d339d379dc7)
+# Ferramentas de Testes Utilizadas
+WhatsApp Business em ambiente de testes para simular interações reais com munícipes.
+
+Planilhas Google para monitoramento de manifestações registradas automaticamente.
+
+Postman para testes de integração com a API do WhatsApp Business.
+
+Cronômetro (manual ou ferramentas como JMeter) para medir o tempo de resposta do chatbot.
