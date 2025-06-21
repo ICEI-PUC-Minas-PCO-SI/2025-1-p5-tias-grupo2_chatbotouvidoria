@@ -56,4 +56,4 @@ As tabelas a seguir apresentam os requisitos funcionais e não funcionais que de
 
 # Diagrama de casos de uso
 
-(Ainda falta botar o diagrama)
+![diagrama de caso de us](https://github.com/user-attachments/assets/a9f0efab-4a65-42c8-a2b8-e366c067e327)
