@@ -10,14 +10,18 @@ Esta seção apresenta uma visão geral das principais interfaces da plataforma 
 
 O fluxo do usuário foi definido considerando a simplicidade de uso, especialmente por munícipes com pouca familiaridade com tecnologia. Todo o atendimento começa no WhatsApp, com navegação orientada por menus e respostas guiadas do chatbot.
 
+![Userflow](https://github.com/user-attachments/assets/e535f721-73f3-46ce-a6a1-38cccb2ac94e)
+
 
 ### Diagrama de fluxo
 
-O diagrama apresenta o estudo do fluxo de interação do usuário com o sistema interativo, muitas vezes sem a necessidade de desenhar o design das telas da interface. Isso permite que o design das interações seja bem planejado e tenha impacto na qualidade do design do wireframe interativo que será desenvolvido logo em seguida.
+![Userflow](https://github.com/user-attachments/assets/e535f721-73f3-46ce-a6a1-38cccb2ac94e)
 
 ## Wireframes
 
 Os wireframes foram desenvolvidos no Figma para simular a experiência de interação do usuário com a interface administrativa da Ouvidoria. Embora o cidadão utilize o WhatsApp, há uma interface interna utilizada pelos atendentes e gestores para acompanhar os dados.
+
+![wireframe](https://github.com/user-attachments/assets/634ae162-9998-4bef-a441-19455e394344)
 
 ## Interface do sistema
 
