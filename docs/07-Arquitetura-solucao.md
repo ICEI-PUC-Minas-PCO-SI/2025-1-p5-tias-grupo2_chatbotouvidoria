@@ -4,70 +4,27 @@
 
 A arquitetura da solução descreve como os componentes da aplicação SmartOuvidoria estão organizados, sua estrutura técnica, modelo de dados e ambiente de hospedagem. A proposta busca garantir um sistema escalável, seguro e com baixo custo de manutenção.
 
-![Arquitetura da Solução](images/arquitetura.png)
+![arquitdasolução](https://github.com/user-attachments/assets/8f86eb76-19b8-421c-b42b-4d43b8d6c109)
 
 ## Diagrama de classes
 
 O diagrama de classes representa os principais elementos da aplicação. Foram definidas classes para o controle de usuários, manifestações, atendimentos, protocolos e interações automatizadas com o chatbot.
 
+![diagramadeclasses](https://github.com/user-attachments/assets/c7e7874b-e158-4344-87dc-f7a4f201f42e)
 
 ##  Modelo de dados
 
 ### Modelo ER
 
-O Modelo ER representa, por meio de um diagrama, como as entidades (coisas, objetos) se relacionam entre si na aplicação interativa.
+![modeloER](https://github.com/user-attachments/assets/a33495b4-4ac7-4212-bcbe-9ddaff7fdb43)
 
 ### Esquema relacional
 
-O Esquema Relacional corresponde à representação dos dados em tabelas juntamente com as restrições de integridade e chave primária.
+-
  
 ### Modelo físico
 
-Insira aqui o script de criação das tabelas do banco de dados.
-
-Veja um exemplo:
-
-```sql
--- Criação da tabela Medico
-CREATE TABLE Medico (
-    MedCodigo INTEGER PRIMARY KEY,
-    MedNome VARCHAR(100)
-);
-
--- Criação da tabela Paciente
-CREATE TABLE Paciente (
-    PacCodigo INTEGER PRIMARY KEY,
-    PacNome VARCHAR(100)
-);
-
--- Criação da tabela Consulta
-CREATE TABLE Consulta (
-    ConCodigo INTEGER PRIMARY KEY,
-    MedCodigo INTEGER,
-    PacCodigo INTEGER,
-    Data DATE,
-    FOREIGN KEY (MedCodigo) REFERENCES Medico(MedCodigo),
-    FOREIGN KEY (PacCodigo) REFERENCES Paciente(PacCodigo)
-);
-
--- Criação da tabela Medicamento
-CREATE TABLE Medicamento (
-    MdcCodigo INTEGER PRIMARY KEY,
-    MdcNome VARCHAR(100)
-);
-
--- Criação da tabela Prescricao
-CREATE TABLE Prescricao (
-    ConCodigo INTEGER,
-    MdcCodigo INTEGER,
-    Posologia VARCHAR(200),
-    PRIMARY KEY (ConCodigo, MdcCodigo),
-    FOREIGN KEY (ConCodigo) REFERENCES Consulta(ConCodigo),
-    FOREIGN KEY (MdcCodigo) REFERENCES Medicamento(MdcCodigo)
-);
-```
-Esse script deverá ser incluído em um arquivo .sql na pasta [de scripts SQL](../src/db).
-
+-
 
 ## Tecnologias
 
@@ -86,6 +43,7 @@ A tabela abaixo resume as tecnologias utilizadas na construção da solução Sm
 
 ## Hospedagem
 
+-
 
 ## Qualidade de software
 
