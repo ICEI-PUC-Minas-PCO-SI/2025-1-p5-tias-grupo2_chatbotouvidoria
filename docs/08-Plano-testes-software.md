@@ -1,42 +1,66 @@
 # Plano de testes de software
 
-<span style="color:red">Pré-requisitos: <a href="02-Especificacao.md"> Especificação do projeto</a></span>, <a href="05-Projeto-interface.md"> Projeto de interface</a>
+<span style="color:red">Pré-requisitos: <a href="02-Especificacao.md">Especificação do projeto</a></span>, <a href="05-Projeto-interface.md">Projeto de interface</a>
 
-O plano de testes de software é gerado a partir da especificação do sistema e consiste em casos de teste que deverão ser executados quando a implementação estiver parcial ou totalmente pronta. Apresente os cenários de teste utilizados na realização dos testes da sua aplicação. Escolha cenários de teste que demonstrem os requisitos sendo satisfeitos.
+Este plano tem como objetivo validar os requisitos definidos para a aplicação SmartOuvidoria, garantindo que o chatbot para atendimento à Ouvidoria Geral de Contagem funcione conforme esperado em diferentes situações de uso.
 
-Enumere quais cenários de testes foram selecionados para teste. Neste tópico, o grupo deve detalhar quais funcionalidades foram avaliadas, o grupo de usuários que foi escolhido para participar do teste e as ferramentas utilizadas.
+A seguir, estão descritos os principais casos de teste planejados com base nos requisitos funcionais e não funcionais do projeto.
 
-Não deixe de enumerar os casos de teste de forma sequencial e garantir que o(s) requisito(s) associado(s) a cada um deles esteja(m) correto(s) — de acordo com o que foi definido na <a href="02-Especificacao.md">Especificação do projeto</a>.
+# CT-001 – Saudação ao Munícipe
 
-Por exemplo:
+| Campo                   | Detalhes                                                                                                        |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **Requisito associado** | RD-001 – O sistema deve saudar o munícipe.                                                                      |
+| **Objetivo do teste**   | Verificar se o sistema envia a mensagem de saudação corretamente após a primeira interação do munícipe.         |
+| **Passos**              | - Abrir o WhatsApp/ - Enviar qualquer mensagem para o número da Ouvidoria/ - Observar a resposta automática |
+| **Critério de êxito**   | - O sistema envia uma mensagem de saudação com identificação da Ouvidoria de Contagem.                          |
+| **Responsável**         | Vinicius Augusto                                                                                    |
 
-| **Caso de teste**  | **CT-001 – Cadastrar perfil**  |
-|:---: |:---: |
-| Requisito associado | RF-00X - A aplicação deve apresentar, na página principal, a funcionalidade de cadastro de usuários para que estes consigam criar e gerenciar seu perfil. |
-| Objetivo do teste | Verificar se o usuário consegue se cadastrar na aplicação. |
-| Passos | - Acessar o navegador <br> - Informar o endereço do site https://adota-pet.herokuapp.com/src/index.html <br> - Clicar em "Criar conta" <br> - Preencher os campos obrigatórios (e-mail, nome, sobrenome, celular, CPF, senha, confirmação de senha) <br> - Aceitar os termos de uso <br> - Clicar em "Registrar" |
-| Critério de êxito | - O cadastro foi realizado com sucesso. |
-| Responsável pela elaboração do caso de teste | Nome do integrante da equipe. |
 
 <br>
 
-| **Caso de teste**  | **CT-002 – Efetuar login**  |
-|:---: |:---: |
-| Requisito associado | RF-00Y - A aplicação deve possuir opção de fazer login, sendo o login o endereço de e-mail. |
-| Objetivo do teste | Verificar se o usuário consegue realizar login. |
-| Passos | - Acessar o navegador <br> - Informar o endereço do site https://adota-pet.herokuapp.com/src/index.html <br> - Clicar no botão "Entrar" <br> - Preencher o campo de e-mail <br> - Preencher o campo de senha <br> - Clicar em "Login" |
-| Critério de êxito | - O login foi realizado com sucesso. |
-| Responsável pela elaboração do caso de teste | Nome do integrante da equipe. |
+# CT-002 – Cadastro de Manifestação
+
+| Campo                   | Detalhes                                                                                                                                 |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **Requisito associado** | RF-006 a RF-007 – Coleta de dados e descrição da manifestação.                                                                           |
+| **Objetivo do teste**   | Verificar se o sistema solicita e registra os dados do munícipe para criar uma nova manifestação.                                        |
+| **Passos**              | - Iniciar conversa com o chatbot<br>- Selecionar uma opção de atendimento<br>- Informar e-mail, nome, endereço<br>- Descrever o problema |
+| **Critério de êxito**   | - Todos os dados são coletados corretamente e a manifestação é registrada ou encaminhada.                                                |
+| **Responsável**         | Daniel Vitor                                                                                                          |
+
+<br>
+
+# CT-003 – Encaminhamento para Atendente
+
+| Campo                   | Detalhes                                                                                                             |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| **Requisito associado** | RF-008 – Encaminhamento ao atendimento humano.                                                                       |
+| **Objetivo do teste**   | Verificar se o sistema encaminha corretamente o munícipe para um atendente quando necessário.                        |
+| **Passos**              | - Iniciar atendimento com o chatbot<br>- Indicar um problema que exija suporte humano<br>- Aguardar redirecionamento |
+| **Critério de êxito**   | - O chatbot transfere a conversa para um atendente ou fornece as instruções adequadas para contato humano.           |
+| **Responsável**         | Gustavo Augusto                                                                                     |
+
+<br>
+
+# CT-004 – Envio de Contato da Secretaria
+
+| Campo                   | Detalhes                                                                                                                         |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| **Requisito associado** | RF-009 – Envio de informações de contato da secretaria.                                                                          |
+| **Objetivo do teste**   | Verificar se o sistema fornece corretamente o contato da secretaria quando necessário.                                           |
+| **Passos**              | - Realizar atendimento com o chatbot<br>- Indicar que o cidadão ainda não contatou a secretaria<br>- Aguardar o envio do contato |
+| **Critério de êxito**   | - O sistema envia corretamente as informações de contato da secretaria competente.                                               |
+| **Responsável**         | Yago de Arruda                                                                                                   |
 
 
-## Ferramentas de testes (opcional)
+# Ferramentas de Testes Utilizadas
 
-Comente sobre as ferramentas de testes utilizadas.
- 
-> **Links úteis**:
-> - [IBM - criação e geração de planos de teste](https://www.ibm.com/developerworks/br/local/rational/criacao_geracao_planos_testes_software/index.html)
-> - [Práticas e técnicas de testes ágeis](http://assiste.serpro.gov.br/serproagil/Apresenta/slides.pdf)
-> - [Teste de software: conceitos e tipos de testes](https://blog.onedaytesting.com.br/teste-de-software/)
-> - [Criação e geração de planos de teste de software](https://www.ibm.com/developerworks/br/local/rational/criacao_geracao_planos_testes_software/index.html)
-> - [Ferramentas de teste para JavaScript](https://geekflare.com/javascript-unit-testing/)
-> - [UX Tools](https://uxdesign.cc/ux-user-research-and-user-testing-tools-2d339d379dc7)
+- WhatsApp Business (ambiente de testes)
+Utilizado para simular interações reais com os munícipes.
+
+- Planilhas Google
+Para monitoramento e registro das manifestações recebidas.
+
+- Postman
+Testes de integração com a API do WhatsApp Business.

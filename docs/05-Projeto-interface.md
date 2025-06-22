@@ -3,49 +3,25 @@
 
 <span style="color:red">Pré-requisitos: <a href="02-Especificacao.md"> Especificação do projeto</a></span>
 
-Visão geral da interação do usuário pelas telas do sistema e protótipo interativo das telas com as funcionalidades que fazem parte do sistema (wireframes).
+Esta seção apresenta uma visão geral das principais interfaces da plataforma SmartOuvidoria, detalhando o fluxo de interação do usuário, wireframes e telas funcionais. As interfaces foram pensadas para garantir acessibilidade, clareza e praticidade, respeitando os requisitos funcionais e não funcionais, além das histórias de usuários descritas anteriormente.
 
- Apresente as principais interfaces da plataforma. Discuta como ela foi elaborada de forma a atender os requisitos funcionais, não funcionais e histórias de usuário abordados na <a href="02-Especificacao.md"> Especificação do projeto</a></span>.
 
  ## User flow
 
-Fluxo de usuário (user flow) é uma técnica que permite ao desenvolvedor mapear todo o fluxo de navegação do usuário na aplicação. Essa técnica serve para alinhar os caminhos e as possíveis ações que o usuário pode realizar junto com os membros da equipe.
+O fluxo do usuário foi definido considerando a simplicidade de uso, especialmente por munícipes com pouca familiaridade com tecnologia. Todo o atendimento começa no WhatsApp, com navegação orientada por menus e respostas guiadas do chatbot.
 
-![Exemplo de user flow](images/user_flow.jpg)
+![Userflow](https://github.com/user-attachments/assets/e535f721-73f3-46ce-a6a1-38cccb2ac94e)
 
-> **Links úteis**:
-> - [User flow: o quê é e como fazer?](https://medium.com/7bits/fluxo-de-usu%C3%A1rio-user-flow-o-que-%C3%A9-como-fazer-79d965872534)
-> - [User flow vs site maps](http://designr.com.br/sitemap-e-user-flow-quais-as-diferencas-e-quando-usar-cada-um/)
-> - [Top 25 user flow tools & templates for smooth](https://www.mockplus.com/blog/post/user-flow-tools)
 
 ### Diagrama de fluxo
 
-O diagrama apresenta o estudo do fluxo de interação do usuário com o sistema interativo, muitas vezes sem a necessidade de desenhar o design das telas da interface. Isso permite que o design das interações seja bem planejado e tenha impacto na qualidade do design do wireframe interativo que será desenvolvido logo em seguida.
-
-O diagrama de fluxo pode ser desenvolvido com “boxes” que possuem, internamente, a indicação dos principais elementos de interface — tais como menus e acessos — e funcionalidades, como editar, pesquisar, filtrar e configurar, além da conexão entre esses boxes a partir do processo de interação.
-
-![Exemplo de diagrama de fluxo](images/diagrama_fluxo.jpg)
-
-> **Links úteis**:
-> - [Como criar um diagrama de fluxo de usuário](https://www.lucidchart.com/blog/how-to-make-a-user-flow-diagram)
-> - [Fluxograma online: seis sites para fazer gráfico sem instalar nada](https://www.techtudo.com.br/listas/2019/03/fluxograma-online-seis-sites-para-fazer-grafico-sem-instalar-nada.ghtml)
+![Userflow](https://github.com/user-attachments/assets/e535f721-73f3-46ce-a6a1-38cccb2ac94e)
 
 ## Wireframes
 
-São protótipos usados no design de interface para sugerir a estrutura de um site web e seu relacionamento entre suas páginas. Um wireframe web é uma ilustração que mostra o layout dos elementos fundamentais na interface.
+Os wireframes foram desenvolvidos no Figma para simular a experiência de interação do usuário com a interface administrativa da Ouvidoria. Embora o cidadão utilize o WhatsApp, há uma interface interna utilizada pelos atendentes e gestores para acompanhar os dados.
 
-![Exemplo de wireframe](images/wireframe.png)
- 
-> **Links úteis**:
-> - [Protótipos: baixa, média ou alta fidelidade?](https://medium.com/ladies-that-ux-br/prot%C3%B3tipos-baixa-m%C3%A9dia-ou-alta-fidelidade-71d897559135)
-> - [Protótipos vs wireframes](https://www.nngroup.com/videos/prototypes-vs-wireframes-ux-projects/)
-> - [Ferramentas de wireframes](https://rockcontent.com/blog/wireframes/)
-> - [MarvelApp](https://marvelapp.com/developers/documentation/tutorials/)
-> - [Figma](https://www.figma.com/)
-> - [Adobe XD](https://www.adobe.com/br/products/xd.html#scroll)
-> - [Axure](https://www.axure.com/edu) (Licença Educacional)
-> - [InvisionApp](https://www.invisionapp.com/) (Licença Educacional)
-
+![wireframe](https://github.com/user-attachments/assets/634ae162-9998-4bef-a441-19455e394344)
 
 ## Interface do sistema
 
@@ -53,28 +29,28 @@ Visão geral da interação do usuário por meio das telas do sistema. Apresente
 
 ### Tela principal do sistema
 
-Descrição da tela principal do sistema.
-
-> Insira aqui a tela principal do sistema
+A tela principal corresponde ao WhatsApp, onde podem assumir atendimentos pendentes.
 
 
-###  Telas do processo 1
+###  Telas do processo 1 - Registro da manifestação
 
-Descrição da tela relativa à atividade 1 do processo 1.
+Tela 1.1 – Início do atendimento no WhatsApp
 
-> Insira aqui a tela da atividade 1
+O cidadão inicia o atendimento via WhatsApp e recebe uma saudação automática com o menu de opções.
 
-Descrição da tela relativa à atividade 2 do processo 1.
+Tela 1.2 – Coleta da manifestação
 
-> Insira aqui a tela da atividade 2
+O chatbot pergunta sobre o tipo de manifestação, dados do protocolo e dados pessoais do munícipe, registrando tudo automaticamente.
 
 
-### Telas do processo 2
+### Telas do processo 2 – Encaminhamento para atendimento humano
 
-Descrição da tela relativa à atividade 1 do processo 2.
+Tela 2.1 – Identificação de necessidade de atendimento humano
 
-> Insira aqui a tela da atividade 1
+Quando o chatbot não consegue atender, ele exibe uma mensagem explicando que o atendimento será realizado por um atendente.
 
-Descrição da tela relativa à atividade 2 do processo 2.
+Tela 2.2 – Interface do atendente
 
-> Insira aqui a tela da atividade 2
+O atendente visualiza todas as informações coletadas pelo chatbot e continua o atendimento pelo painel administrativo ou via WhatsApp.
+
+

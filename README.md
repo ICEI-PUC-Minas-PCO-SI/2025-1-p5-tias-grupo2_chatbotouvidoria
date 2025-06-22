@@ -6,7 +6,7 @@
 
 `1º semestre/2025`
 
-Nosso projeto consiste em um chatbot para a ouvidoria de contagem, o chatbot será responsável pelo atendimento inicial dos munícipes, caso necessário direcionando munícipes a entrar em contato com o órgão correto ou então prosseguindo para um atendimento.
+Nosso projeto consiste em um chatbot para a Ouvidoria de Contagem, o chatbot será responsável pelo atendimento inicial dos munícipes, caso necessário direcionando munícipes a entrar em contato com o órgão correto ou então prosseguindo para um atendimento.
 
 ## Integrantes
 
@@ -24,13 +24,22 @@ Nosso projeto consiste em um chatbot para a ouvidoria de contagem, o chatbot ser
 
 ## Instruções de utilização
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
+Assim que o sistema SmartOuvidoria estiver instalado no computador de uso da Ouvidoria, o processo para iniciar o atendimento automatizado será simples e direto. Não é necessário nenhum conhecimento técnico por parte dos funcionários para operar o sistema.
 
-Não deixe de informar o link onde a aplicação estará disponível para acesso (por exemplo: https://adota-pet.herokuapp.com/src/index.html).
+# Etapas para Executar o Chatbot
+Localize o arquivo executável da aplicação (ex: smart-ouvidoria.exe) fornecido pela equipe de desenvolvimento.
 
-Se houver usuário de teste, o login e a senha também deverão ser informados aqui (por exemplo: usuário - admin / senha - admin).
+Dê um duplo clique no executável para iniciar o sistema.
 
-O link e o usuário/senha descritos acima são apenas exemplos de como tais informações deverão ser apresentadas.
+Na primeira utilização, será exibido um QR Code na tela.
+
+Abra o WhatsApp Web no celular institucional da Ouvidoria e escaneie o QR Code exibido.
+
+Após a leitura do QR Code, o chatbot estará conectado e pronto para iniciar os atendimentos via WhatsApp.
+
+> O sistema permanecerá em execução enquanto a janela estiver aberta. Para encerrar, basta fechar o terminal ou a janela de execução do programa.
+
+Ambiente de testes: disponível apenas durante o horário comercial da equipe de desenvolvimento/da Ouvidoria.
 
 # Documentação
 
