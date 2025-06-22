@@ -5,6 +5,8 @@ const path = require('path');
 const { DefaultSerializer } = require('v8');
 const chromePath = path.join(process.cwd(), 'puppeteer-core', '.local-chromium', 'win64-1045629', 'chrome-win', 'chrome.exe');
 
+//console.log('Iniciando');
+
 const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
@@ -16,18 +18,22 @@ const client = new Client({
 
 //processo para gerar o QR code para conectar com o chatbot
 client.on('qr', qr => {
+    //console.log('qr');
     qrcode.generate(qr, { small: true });
     console.log('Escaneie o QR Code com o WhatsApp para conectar o chatbot');
 });
 
 //quando conectado avisa sobre a conexão
 client.on('ready', () => {
+    //console.log('ready');
     console.clear();
     console.log('O chatbot está em funcionamento (não feche essa janela)');
 });
 
 //instancia a lista de municipes
 const municipes = {};
+
+//console.log('Aguardando mensagem...');
 
 //quando recebe uma mensagem
 client.on('message', async msg => {
@@ -247,7 +253,12 @@ client.on('message', async msg => {
     }
 });
 
-client.initialize();
+//client.initialize();
+try {
+  client.initialize();
+} catch (err) {
+  console.error('Erro ao iniciar client:', err);
+}
 
 async function validarTAG(msg) {
     const valor = msg.body.trim();
