@@ -5,7 +5,7 @@
     "whatsapp-web.js": "^1.26.0"
   },
   "name": "SmartOuvidoria",
-  "version": "2.0.0",
+  "version": "2.2.0",
   "bin": "index.js",
   "scripts": {
     "start": "node index.js"

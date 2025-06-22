@@ -1,4 +1,4 @@
-const { Client, LocalAuth, Buttons } = require('whatsapp-web.js');
+const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 
 const path = require('path');
@@ -77,7 +77,10 @@ client.on('message', async msg => {
                 const tag = await validarTAG(msg);//resposta da pergunta anterior
                 if (tag != null) {
                     municipe.tag = tag;
-                    await client.sendMessage(numeroDoMunicipe, `Você já entrou em contato com a secretaria responsável por esse assunto? \n*Responda apenas com* _Sim_ ou _Não_.`);
+                    await client.sendMessage(numeroDoMunicipe, `Você já entrou em contato com a secretaria responsável por esse assunto?\n` +
+                        `Responda apenas com\n` +
+                        `*1 para Sim* e\n` +
+                        `*2 para Não*.`);
                     municipe.step = 2;
                     municipe.responderAoErro = true;
                 }
@@ -88,29 +91,29 @@ client.on('message', async msg => {
                 break;
             case 2://pega o numero do protocolo
                 const contato = await validarContatoSecretaria(msg)
-                if (contato == "sim") {
+                if (contato == 1) {
                     municipe.contatoJaRealizado = msg.body;
-                    await client.sendMessage(numeroDoMunicipe, `Poderia, por gentileza, informar o *número do protocolo* fornecido pela secretaria?`);
+                    await client.sendMessage(numeroDoMunicipe, `Por gentileza, informe o *número do protocolo* fornecido pela secretaria.`);
                     municipe.step = 3;
                     municipe.responderAoErro = true;
-                } else if (contato == "nao") {
+                } else if (contato == 2) {
                     municipe.contatoJaRealizado = msg.body;
                     await client.sendMessage(numeroDoMunicipe,
                         `Tudo bem!\n\nPedimos, por favor, que entre em contato com a secretaria responsável para registrar um protocolo antes de continuar com o atendimento aqui na Ouvidoria.\n\nConfira as informações de contato no link abaixo:\n🔗 https://portal.contagem.mg.gov.br/portal/secretarias`);
-                    municipe.step = 11;
+                    municipe.step = 110;
                     municipe.responderAoErro = true;
                     console.log(`O municipe ${numeroDoMunicipe} finalizou contato.`);
                 }
                 else if (municipe.responderAoErro == true) {
                     municipe.responderAoErro = false;
-                    await client.sendMessage(numeroDoMunicipe, `⚠️ Responda com _Sim_ ou _Não_, por favor.`);
+                    await client.sendMessage(numeroDoMunicipe, `⚠️ Responda com *1 para* _sim_ ou *2 para* _Não_, por favor.`);
                 }
                 break;
             case 3://pega a data de abertura do protocolo
                 const protocolo = await validarProtocolo(msg)
                 if (protocolo != null) {
                     municipe.numeroProtocolo = msg.body;
-                    await client.sendMessage(numeroDoMunicipe, `Por favor, informe a *data em que o protocolo foi aberto*.`);
+                    await client.sendMessage(numeroDoMunicipe, `Por favor, informe a *data em que o protocolo foi aberto*\n siga o formato *DD/MM/AAAA*.`);
                     municipe.step = 4;
                     municipe.responderAoErro = true;
                 }
@@ -124,7 +127,7 @@ client.on('message', async msg => {
                 const data = await validarDataAbertura(msg)
                 if (data != null) {
                     municipe.dataAbertura = msg.body;
-                    await client.sendMessage(numeroDoMunicipe, `Qual é o *prazo estimado* informado para a resolução do seu protocolo?`);
+                    await client.sendMessage(numeroDoMunicipe, `Qual é o *prazo estimado* informado para a resolução do seu protocolo?\n siga o formato *DD/MM/AAAA*`);
                     municipe.step = 5;
                     municipe.responderAoErro = true;
                 }
@@ -138,7 +141,7 @@ client.on('message', async msg => {
                 const prazo = await validarPrazo(msg)
                 if (prazo != null) {
                     municipe.prazoProtocolo = msg.body;
-                    await client.sendMessage(numeroDoMunicipe, `Certo, estamos quase terminando. \n\nAgora, por gentileza, informe o seu *nome completo*.`);
+                    await client.sendMessage(numeroDoMunicipe, `Certo, estamos quase terminando. \nAgora, por gentileza, informe o seu *nome completo*.`);
                     municipe.step = 6;
                     municipe.responderAoErro = true;
                 }
@@ -181,7 +184,7 @@ client.on('message', async msg => {
                 if (endereco != null) {
                     municipe.endereco = msg.body;
                     await client.sendMessage(numeroDoMunicipe, 'Para finalizar, por favor, *descreva com mais detalhes o problema* que está enfrentando.');
-                    municipe.step = 9;
+                    municipe.step = 100;
                     municipe.responderAoErro = true;
                 }
                 else if (municipe.responderAoErro == true) {
@@ -190,7 +193,7 @@ client.on('message', async msg => {
                 }
 
                 break;
-            case 9://mensagem pre atendimento humano
+            case 100://Encerrar atendimento - com mensagem para aguardar atendente
                 const detalhes = await validarDetalhes(msg)
                 if (detalhes != null) {
                     municipe.detalhes = msg.body;
@@ -206,24 +209,35 @@ client.on('message', async msg => {
                         `• Endereço: *${municipe.endereco}*\n` +
                         `• Detalhes do problema: *${municipe.detalhes}*\n`
                     );
-                    municipe.step = 11;
+                    municipe.step = 300;
                     municipe.responderAoErro = true;
                     console.log(`O municipe ${numeroDoMunicipe} finalizou contato.`);
+
+                    setTimeout(() => {
+                        delete municipes[numeroDoMunicipe];
+                        console.log(`Municipe ${numeroDoMunicipe} terminou o tempo de espera.`);
+                    }, 300000);
                 }
                 else if (municipe.responderAoErro == true) {
                     municipe.responderAoErro = false;
                     await client.sendMessage(numeroDoMunicipe, `⚠️ Por favor, forneça uma breve descrição do problema.`);
                 }
-
                 break;
-            case 10://envia links das secretarias
+            case 110://Encerrar atendimento - com link das secretarias
                 await client.sendMessage(numeroDoMunicipe,
-                    `Por favor, entre em contato com a secretaria correspondente e abra um protocolo.\n` +
-                    `Você pode encontrar mais informações sobre as secretarias no seguinte link: https://portal.contagem.mg.gov.br/portal/secretarias`
+                    `Atendimento finalizado, caso tenha mais alguma dúvida entre em contato novamente.`
                 );
-                municipe.step = 11;
+                setTimeout(() => {
+                    delete municipes[numeroDoMunicipe];
+                    console.log(`Municipe ${numeroDoMunicipe} terminou o tempo de espera.`);
+                }, 300000);
+                municipe.step = 300;
                 break;
-            case 11://se precisar
+            case 300://"Limbo do encerramento"
+                if (msg.body.trim() == "-1") {
+                    delete municipes[numeroDoMunicipe];
+                    console.log(`Municipe ${numeroDoMunicipe} reiniciou a conversa.`);
+                }
                 break;
         }
 
@@ -246,17 +260,18 @@ async function validarTAG(msg) {
 }
 
 async function validarContatoSecretaria(msg) {
-    if (["sim", "s", "já", "já sim", "ja", "SIM", "SIM"].includes(msg.body.toLowerCase())) {
-        return "sim";
-    } else if (["não", "n", "nao", "Não", "NÃO", "NAO", "N"].includes(msg.body.toLowerCase())) {
-        return "nao";
+    const valor = msg.body.trim();
+
+    if (["1", "2"].includes(valor)) {
+        return msg.body;
     } else {
         return null;
     }
 }
 
-async function validarProtocolo(msg) { //Não precisa validar o protocolo por enquanto
-    if (msg.body) {
+async function validarProtocolo(msg) {
+    const detalhes = msg.body.trim();
+    if (detalhes.length > 4) {
         return msg.body;
     } else {
         return null;
@@ -264,23 +279,46 @@ async function validarProtocolo(msg) { //Não precisa validar o protocolo por en
 }
 
 async function validarDataAbertura(msg) {
-    if (1 == 1) {
-        return msg.body;
+    const valor = msg.body.trim();
+    const regex = /^([0-2]\d|3[01])\/(0\d|1[0-2])\/\d{4}$/;
+
+    if (regex.test(valor)) {
+        const [day, month, year] = valor.split('/').map(Number);
+        const date = new Date(`${year}-${month}-${day}`);
+
+        return (
+            date.getFullYear() === year &&
+            date.getMonth() + 1 === month &&
+            date.getDate() === day
+        );
+
     } else {
         return null;
     }
 }
 
 async function validarPrazo(msg) {
-    if (1 == 1) {
-        return msg.body;
+    const valor = msg.body.trim();
+    const regex = /^([0-2]\d|3[01])\/(0\d|1[0-2])\/\d{4}$/;
+
+    if (regex.test(valor)) {
+        const [day, month, year] = valor.split('/').map(Number);
+        const date = new Date(`${year}-${month}-${day}`);
+
+        return (
+            date.getFullYear() === year &&
+            date.getMonth() + 1 === month &&
+            date.getDate() === day
+        );
+
     } else {
         return null;
     }
 }
 
-async function validarNome(msg) { //Não precisa validar o nome por enquanto
-    if (1 == 1) {//verificar o que precisa para validar nome
+async function validarNome(msg) {
+    const nome = msg.body.trim();
+    if (nome.length > 2) {
         return msg.body;
     } else {
         return null;
@@ -296,16 +334,18 @@ async function validarEmail(msg) {
     }
 }
 
-async function validarEndereço(msg) { //Não precisa validar o endereço por enquanto
-    if (1 == 1) {//verificar o que precisa para validar endereço
+async function validarEndereço(msg) {
+    const endereco = msg.body.trim();
+    if (endereco.length > 5) {
         return msg.body;
     } else {
         return null;
     }
 }
 
-async function validarDetalhes(msg) { //Não precisa validar os detalhes por enquanto
-    if (1 == 1) {//verificar o que precisa para validar detalhes
+async function validarDetalhes(msg) {
+    const detalhes = msg.body.trim();
+    if (detalhes.length > 10) {
         return msg.body;
     } else {
         return null;

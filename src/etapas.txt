@@ -1,0 +1,30 @@
+Etapas do chatbot.
+
+0 - introdução/pergunta tag
+1 - valida tag/pergunta secretaria
+2 - valida secretaria/pergunta num protocolo
+3 - valida num protocolo/pergunta data de abertura
+4 - valida data de abertura/pergunta prazo 
+5 - valida prazo/pergunta nome
+6 - guarda o nome/pergunta email
+7 - valida email/pergunta endereço
+8 - guarda o endereço/pergunta descrição
+100 - Encerramento com mensagem para aguardar contato do atendente
+110 - Informa link das secretarias
+120 - Encerramento do atendimento para etapas que não sejam a 100 - removido - 22/6
+300 - Etapa da finalização evitar contato repetido,
+
+#------------------------------------------------------------------------------------------------------------------------#
+
+Quando diz "Valida" quer dizer que é verificada a resposta e se dentro dos padrões essa resposta é anotada 
+e a etapa depois da "/" acontece, e o processo se segue para a proxima etapa.
+
+Quando diz "Guarda" é alguma informação que não precisa ou não tem como validar o dado, então ela é anotada 
+e o processo segue para a proxima etapa.
+
+As etapas acima de 100 são todas relacionadas a encerramento de contato, execeto pela 300 que serve exclusivamente 
+para evitar contato duplicado, deixando a pessoa em um "limbo" até a aplicação ser reiniciada ou um de alguma forma 
+o dado da sua etapa ser alterado.
+
+tarefas: 
+verificar respostas de erro
