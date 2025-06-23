@@ -126,7 +126,7 @@ client.on('message', async msg => {
                 const protocolo = await validarProtocolo(msg)
                 if (protocolo != null) {
                     municipe.numeroProtocolo = msg.body;
-                    await client.sendMessage(numeroDoMunicipe, `Por favor, informe a *data em que o protocolo foi aberto*, seguindo o formato DD/MM/AAAA.*.`);
+                    await client.sendMessage(numeroDoMunicipe, `Por favor, informe a *data em que o protocolo foi aberto*, seguindo o formato *DD/MM/AAAA*.`);
                     municipe.step = 4;
                     municipe.responderAoErro = true;
                 }
