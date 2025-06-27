@@ -2,38 +2,34 @@ const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 
 const path = require('path');
-const { DefaultSerializer } = require('v8');
-const chromePath = path.join(process.cwd(), 'puppeteer-core', '.local-chromium', 'win64-1045629', 'chrome-win', 'chrome.exe');
+const executablePath = path.join(process.cwd(), 'puppeteer-core', '.local-chromium', 'win64-1045629', 'chrome-win', 'chrome.exe');
 
-//console.log('Iniciando');
+console.clear();
+console.log('Iniciando chatbot, por favor aguarde alguns instantes');
 
 const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
-        executablePath: chromePath,
-        headless: true,
+        executablePath: executablePath,
+        headless: false,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     }
 });
 
 //processo para gerar o QR code para conectar com o chatbot
 client.on('qr', qr => {
-    //console.log('qr');
     qrcode.generate(qr, { small: true });
     console.log('Escaneie o QR Code com o WhatsApp para conectar o chatbot');
 });
 
 //quando conectado avisa sobre a conexão
 client.on('ready', () => {
-    //console.log('ready');
     console.clear();
     console.log('O chatbot está em funcionamento (não feche essa janela)');
 });
 
 //instancia a lista de municipes
 const municipes = {};
-
-//console.log('Aguardando mensagem...');
 
 //quando recebe uma mensagem
 client.on('message', async msg => {
@@ -60,6 +56,7 @@ client.on('message', async msg => {
     tag
     contatoJaRealizado (se ja realizou contato com a secretaria)
     numeroProtocolo
+    anonimo
     dataAbertura (data de criacao do protocolo)
     prazoProtocolo (prazo do protocolo)
     */
@@ -86,7 +83,8 @@ client.on('message', async msg => {
                     await client.sendMessage(numeroDoMunicipe, `Você já entrou em contato com a secretaria ou órgão responsável por esse assunto?\n` +
                         `Responda apenas com\n` +
                         `*1 para Sim*\n` +
-                        `*2 para Não*.`);
+                        `*2 para Não*\n` +
+                        `*3 para abrir manifestação anônima*\n`);
                     municipe.step = 2;
                     municipe.responderAoErro = true;
                 }
@@ -99,16 +97,19 @@ client.on('message', async msg => {
                 const contato = await validarContatoSecretaria(msg)
                 if (contato == 1) {
                     municipe.contatoJaRealizado = msg.body;
+                    municipe.anonimo = false;
                     await client.sendMessage(numeroDoMunicipe, `Por gentileza, informe o *número do protocolo* fornecido pela secretaria.`);
                     municipe.step = 3;
                     municipe.responderAoErro = true;
                 } else if (contato == 2) {
                     municipe.contatoJaRealizado = msg.body;
+                    municipe.anonimo = false;
                     await client.sendMessage(numeroDoMunicipe,
-                        `Tudo bem!\n\nPedimos que, por gentileza, entre em contato com a secretaria responsável para registrar um protocolo antes de prosseguir com o atendimento na Ouvidoria.\n\nConfira as informações de contato no link abaixo:\n🔗 https://portal.contagem.mg.gov.br/portal/secretarias`);
-                    await client.sendMessage(numeroDoMunicipe,
-                        `Atendimento finalizado, caso tenha mais alguma dúvida entre em contato novamente.`
-                    );
+                        `Tudo bem!\n\n` +
+                        `Pedimos que, por gentileza, entre em contato com a secretaria responsável para registrar um protocolo antes de prosseguir com o atendimento na Ouvidoria.\n\n` +
+                        `Confira as informações de contato no link abaixo:\n` +
+                        `🔗 https://portal.contagem.mg.gov.br/portal/secretarias \n\n` +
+                        `Atendimento finalizado, caso tenha mais alguma dúvida entre em contato novamente.`);
                     setTimeout(() => {
                         delete municipes[numeroDoMunicipe];
                         console.log(`Municipe ${numeroDoMunicipe} terminou o tempo de espera.`);
@@ -116,10 +117,15 @@ client.on('message', async msg => {
                     municipe.step = 300;
                     municipe.responderAoErro = true;
                     console.log(`O municipe ${numeroDoMunicipe} finalizou contato.`);
+                } else if (contato == 3) {
+                    municipe.anonimo = true;
+                    await client.sendMessage(numeroDoMunicipe, 'Para finalizar, por favor, *descreva com mais detalhes o problema* que está enfrentando.');
+                    municipe.step = 100;
+                    municipe.responderAoErro = true;
                 }
                 else if (municipe.responderAoErro == true) {
                     municipe.responderAoErro = false;
-                    await client.sendMessage(numeroDoMunicipe, `⚠️ Responda com *1 para* _sim_ ou *2 para* _Não_, por favor.`);
+                    await client.sendMessage(numeroDoMunicipe, `⚠️ Responda com *1 para* _sim_,*2 para* _Não_ ou *3 para* abrir uma _manifestação anônima_, por favor.`);
                 }
                 break;
             case 3://pega a data de abertura do protocolo
@@ -232,18 +238,30 @@ client.on('message', async msg => {
                 const detalhes = await validarDetalhes(msg)
                 if (detalhes != null) {
                     municipe.detalhes = msg.body;
-                    await client.sendMessage(numeroDoMunicipe,
-                        `Muito obrigado pelas informações, *${municipe.nome}*! \n\n` +
-                        `Em breve, nossa equipe entrará em contato para dar prosseguimento ao atendimento.\n\n` +
-                        `📌 *Resumo da sua solicitação:*\n` +
-                        `• Tópico: *${tagCompleta(municipe.tag)}*\n` +
-                        `• Protocolo: *${municipe.numeroProtocolo}*\n` +
-                        `• Abertura/Prazo: *${municipe.dataAbertura} - ${municipe.prazoProtocolo}*\n` +
-                        `• Nome: *${municipe.nome}*\n` +
-                        `• E-mail: *${municipe.email}*\n` +
-                        `• Endereço: *${municipe.endereco}*\n` +
-                        `• Detalhes do problema: *${municipe.detalhes}*\n`
-                    );
+                    if (municipe.anonimo == false) {
+                        await client.sendMessage(numeroDoMunicipe,
+                            `Muito obrigado pelas informações, *${municipe.nome}*! \n\n` +
+                            `📌 *Resumo da sua solicitação:*\n` +
+                            `• Tópico: *${tagCompleta(municipe.tag)}*\n` +
+                            `• Protocolo: *${municipe.numeroProtocolo}*\n` +
+                            `• Abertura/Prazo: *${municipe.dataAbertura} - ${municipe.prazoProtocolo}*\n` +
+                            `• Nome: *${municipe.nome}*\n` +
+                            `• E-mail: *${municipe.email}*\n` +
+                            `• Endereço: *${municipe.endereco}*\n` +
+                            `• Detalhes do problema: *${municipe.detalhes}*\n\n` +
+                            `Em breve, nossa equipe entrará em contato para dar prosseguimento ao atendimento.\n`
+                        );
+                    } else if (municipe.anonimo == true) {
+                        await client.sendMessage(numeroDoMunicipe,
+                            `Muito obrigado pelas informações! \n\n` +
+                            `📌 *Resumo da sua solicitação:*\n` +
+                            `• Tópico: *${tagCompleta(municipe.tag)}*\n` +
+                            `• Manifestação *anônima* \n\n` +
+                            `• Detalhes do problema: *${municipe.detalhes}*\n\n` +
+                            `Sua manifestação foi recebida e será encaminhada à área responsável para análise e providências.\n`
+                        );
+                    }
+
                     municipe.step = 300;
                     municipe.responderAoErro = true;
                     console.log(`O municipe ${numeroDoMunicipe} finalizou contato.`);
@@ -268,11 +286,12 @@ client.on('message', async msg => {
 
     } catch (err) {
         console.error('❌ Erro ao processar mensagem:', err.message);
-        await client.sendMessage(numeroDoMunicipe, '⚠️ Ocorreu um erro. Tente novamente em instantes.');
     }
+
+
+
 });
 
-//client.initialize();
 try {
     client.initialize();
 } catch (err) {
@@ -282,7 +301,7 @@ try {
 async function validarTAG(msg) {
     const valor = msg.body.trim();
 
-    if (["1", "2", "3", "4", "5"].includes(valor)) {
+    if (["1", "2", "3", "4", "5", "6"].includes(valor)) {
         return msg.body;
     } else {
         return null;
@@ -292,7 +311,7 @@ async function validarTAG(msg) {
 async function validarContatoSecretaria(msg) {
     const valor = msg.body.trim();
 
-    if (["1", "2"].includes(valor)) {
+    if (["1", "2", "3"].includes(valor)) {
         return msg.body;
     } else {
         return null;
@@ -406,6 +425,9 @@ function tagCompleta(tag) {
             break;
         case "5":
             tagCompleta = "5 - Outro";
+            break;
+        case "6":
+            tagCompleta = "6 - IPTU";
             break;
         default:
             tagCompleta = "0 - TAG";
