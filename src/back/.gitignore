@@ -14,5 +14,7 @@ config.json
 # Pasta onde estou gerando o executavel
 /Pasta_Do_Executavel
 /puppeteer-core
+/resources
+/chrome-win
 #
 SmartOuvidoria.exe

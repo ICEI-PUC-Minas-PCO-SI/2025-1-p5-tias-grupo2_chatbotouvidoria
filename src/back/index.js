@@ -2,7 +2,7 @@ const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 
 const path = require('path');
-const executablePath = path.join(process.cwd(), 'puppeteer-core', '.local-chromium', 'win64-1045629', 'chrome-win', 'chrome.exe');
+const executablePath = path.join(process.cwd()/*, 'puppeteer-core', '.local-chromium', 'win64-1045629', 'chrome-win'*/,'resources', 'chrome.exe');
 
 console.clear();
 console.log('Iniciando chatbot, por favor aguarde alguns instantes');
